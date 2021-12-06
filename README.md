@@ -1,3 +1,5 @@
+# Solution for frontend tutorial Substrate Kitties
+Work with backend: https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions%2Fkitties
 # Substrate Front End Template
 
 This template allows you to create a front-end application that connects to a
