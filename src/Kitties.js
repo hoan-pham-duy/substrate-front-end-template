@@ -93,8 +93,8 @@ export default function Kitties (props) {
           attrs={{
             palletRpc: 'substrateKitties',
             callable: 'createKitty',
-            inputParams: [nftObjectBase64Str],
-            paramFields: []
+            inputParams: [true],
+            paramFields: [true]
           }}
         />
       </Form.Field>
