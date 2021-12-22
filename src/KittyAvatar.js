@@ -1,4 +1,5 @@
 import React from 'react';
+import {decode as atob, encode as btoa} from 'base-64'
 
 // Generate an array [start, start + 1, ..., end] inclusively
 const genArray = (start, end) =>
@@ -35,7 +36,7 @@ const KittyAvatar = props => {
   const { dna } = props;
 
   if (!dna) return null;
-
+  const base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(dna)));
   // const cat = dnaToAttributes(dna);
   // return <div style={outerStyle}>
   //   <img alt='body' src={cat.body} style={innerStyle} />
@@ -45,7 +46,7 @@ const KittyAvatar = props => {
   //   <img alt='accessory' src={cat.accessory} style={innerStyle} />
   // </div>;
   return <div style={outerStyle}>
-    <img src={`data:image/jpeg;base64,${dna}`} />
+    <img src={`${base64String}`} />
     </div>
 };
 
