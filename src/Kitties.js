@@ -65,12 +65,40 @@ export default function Kitties (props) {
       unsub && unsub();
     };
   };
+  const convertFileToBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = () => resolve({
+        fileName: file.title,
+        base64: reader.result
+    });
+    reader.onerror = reject;
+});
+
+const fileToDataUri = (file) => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    resolve(event.target.result)
+  };
+  reader.readAsDataURL(file);
+});
 
   const onChangeNftObject = async (e) => {
     console.log('onChangeNftObject');
     console.log('e inside onChangeNftObject', e);
     if (e !== undefined) {
-      let nftObjectBase64StrTmp = btoa(e.target.files[0]);
+      // let nftObjectBase64StrTmp = btoa(e.target.files[0])
+      let nftObjectBase64StrTmp = await convertFileToBase64(e.target.files[0])
+      .then(res => res.base64)
+      .catch(err => {
+        console.log(err)
+      });
+      // var reader = new FileReader()
+      // reader.addEventListener('load', readFile)
+      // reader.readAsText(e.target.files[0])
+      setNftObjectBase64Str(nftObjectBase64StrTmp)
+      console.log('nftObjectBase64StrTmp', nftObjectBase64StrTmp);
       setNftObjectBase64Str(nftObjectBase64StrTmp)
     }
     // setNftObjectFile(e.target.files[0]);
