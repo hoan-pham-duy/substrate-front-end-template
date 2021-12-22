@@ -31,11 +31,12 @@ const dnaToAttributes = dna => {
 
 const KittyAvatar = props => {
   const outerStyle = { height: '160px', position: 'relative', width: '50%' };
-  const innerStyle = { height: '150px', position: 'absolute', top: '3%', left: '50%' };
+  const innerStyle = { height: '150px', position: 'absolute'};
   const { dna } = props;
 
   if (!dna) return null;
 
+  /*
   const cat = dnaToAttributes(dna);
   return <div style={outerStyle}>
     <img alt='body' src={cat.body} style={innerStyle} />
@@ -44,6 +45,10 @@ const KittyAvatar = props => {
     <img alt='eyes' src={cat.eyes} style={innerStyle} />
     <img alt='accessory' src={cat.accessory} style={innerStyle} />
   </div>;
+  */
+  return <div style={outerStyle}>
+    <img src={`${dna}`} style={innerStyle} alt='nft_image' />
+    </div>
 };
 
 export default KittyAvatar;

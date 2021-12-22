@@ -13,7 +13,7 @@ const convertToKittyHash = entry =>
 
 const constructKitty = (hash, { dna, price, gender, owner }) => ({
   id: hash,
-  dna,
+  dna: atob(Buffer.from(dna, 'binary').toString('base64')),
   price: price.toJSON(),
   gender: gender.toJSON(),
   owner: owner.toJSON()

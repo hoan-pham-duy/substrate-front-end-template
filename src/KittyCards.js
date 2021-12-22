@@ -162,19 +162,19 @@ const Breed = props => {
 const KittyCard = props => {
   const { kitty, accountPair, setStatus } = props;
   const { id = null, dna = null, owner = null, gender = null, price = null } = kitty;
-  const displayDna = dna && dna.toJSON();
+  const displayDna = dna;
   const isSelf = accountPair.address === kitty.owner;
 
   return <Card>
     { isSelf && <Label as='a' floating color='teal'>Mine</Label> }
-    <KittyAvatar dna={dna.toU8a()} />
+    <KittyAvatar dna={dna} />
     <Card.Content>
       <Card.Header style={{ fontSize: '1em', overflowWrap: 'break-word' }}>
         ID: {id}
       </Card.Header>
-      <Card.Meta style={{ fontSize: '.9em', overflowWrap: 'break-word' }}>
+      {/* <Card.Meta style={{ fontSize: '.9em', overflowWrap: 'break-word' }}>
         DNA: {displayDna}
-      </Card.Meta>
+      </Card.Meta> */}
       <Card.Description>
         <p style={{ overflowWrap: 'break-word' }}>
           Gender: {gender}
