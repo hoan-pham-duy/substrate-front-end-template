@@ -172,9 +172,9 @@ const KittyCard = props => {
       <Card.Header style={{ fontSize: '1em', overflowWrap: 'break-word' }}>
         ID: {id}
       </Card.Header>
-      <Card.Meta style={{ fontSize: '.9em', overflowWrap: 'break-word' }}>
+      {/* <Card.Meta style={{ fontSize: '.9em', overflowWrap: 'break-word' }}>
         DNA: {displayDna}
-      </Card.Meta>
+      </Card.Meta> */}
       <Card.Description>
         <p style={{ overflowWrap: 'break-word' }}>
           Gender: {gender}

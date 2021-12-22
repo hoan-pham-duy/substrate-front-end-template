@@ -98,7 +98,7 @@ const fileToDataUri = (file) => new Promise((resolve, reject) => {
       // reader.addEventListener('load', readFile)
       // reader.readAsText(e.target.files[0])
       setNftObjectBase64Str(nftObjectBase64StrTmp)
-      console.log('nftObjectBase64StrTmp', nftObjectBase64StrTmp);
+      // console.log('nftObjectBase64StrTmp', nftObjectBase64StrTmp);
       setNftObjectBase64Str(nftObjectBase64StrTmp)
     }
     // setNftObjectFile(e.target.files[0]);
