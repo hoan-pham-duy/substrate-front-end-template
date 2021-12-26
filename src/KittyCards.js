@@ -161,7 +161,7 @@ const Breed = props => {
 
 const KittyCard = props => {
   const { kitty, accountPair, setStatus } = props;
-  const { id = null, dna = null, owner = null, gender = null, price = null } = kitty;
+  const { id = null, dna = null, owner = null, gender = null, price = null, name = null } = kitty;
   const displayDna = dna;
   const isSelf = accountPair.address === kitty.owner;
 
@@ -172,9 +172,9 @@ const KittyCard = props => {
       <Card.Header style={{ fontSize: '1em', overflowWrap: 'break-word' }}>
         ID: {id}
       </Card.Header>
-      {/* <Card.Meta style={{ fontSize: '.9em', overflowWrap: 'break-word' }}>
-        DNA: {displayDna}
-      </Card.Meta> */}
+      <Card.Meta style={{ fontSize: '.9em', overflowWrap: 'break-word' }}>
+        Name: {name}
+      </Card.Meta>
       <Card.Description>
         <p style={{ overflowWrap: 'break-word' }}>
           Gender: {gender}
