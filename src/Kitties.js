@@ -11,9 +11,10 @@ import {decode as atob, encode as btoa} from 'base-64'
 const convertToKittyHash = entry =>
   `0x${entry[0].toJSON().slice(-64)}`;
 
-const constructKitty = (hash, { dna, price, gender, owner }) => ({
+const constructKitty = (hash, { dna, price, gender, owner, name}) => ({
   id: hash,
   dna: atob(Buffer.from(dna, 'binary').toString('base64')),
+  name: atob(Buffer.from(name, 'binary').toString('base64')),
   price: price.toJSON(),
   gender: gender.toJSON(),
   owner: owner.toJSON()
@@ -26,6 +27,7 @@ export default function Kitties (props) {
   const [kittyHashes, setKittyHashes] = useState([]);
   const [kitties, setKitties] = useState([]);
   const [nftObjectBase64Str, setNftObjectBase64Str] = useState([]);
+  const [nftObjectName, setNftObjectName] = useState([]);
   const [status, setStatus] = useState('');
 
   const subscribeKittyCnt = () => {
@@ -76,14 +78,6 @@ export default function Kitties (props) {
     reader.onerror = reject;
 });
 
-const fileToDataUri = (file) => new Promise((resolve, reject) => {
-  const reader = new FileReader();
-  reader.onload = (event) => {
-    resolve(event.target.result)
-  };
-  reader.readAsDataURL(file);
-});
-
   const onChangeNftObject = async (e) => {
     console.log('onChangeNftObject');
     console.log('e inside onChangeNftObject', e);
@@ -97,8 +91,9 @@ const fileToDataUri = (file) => new Promise((resolve, reject) => {
       // var reader = new FileReader()
       // reader.addEventListener('load', readFile)
       // reader.readAsText(e.target.files[0])
-      setNftObjectBase64Str(nftObjectBase64StrTmp)
+      console.log('e.target.files[0].name', e.target.files[0].name);
       console.log('nftObjectBase64StrTmp', nftObjectBase64StrTmp);
+      setNftObjectName(e.target.files[0].name)
       setNftObjectBase64Str(nftObjectBase64StrTmp)
     }
     // setNftObjectFile(e.target.files[0]);
@@ -121,8 +116,8 @@ const fileToDataUri = (file) => new Promise((resolve, reject) => {
           attrs={{
             palletRpc: 'substrateKitties',
             callable: 'createKitty',
-            inputParams: [nftObjectBase64Str],
-            paramFields: [true]
+            inputParams: [nftObjectBase64Str, nftObjectName],
+            paramFields: [true, true]
           }}
         />
       </Form.Field>
