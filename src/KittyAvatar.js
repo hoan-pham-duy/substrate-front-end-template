@@ -30,8 +30,8 @@ const dnaToAttributes = dna => {
 };
 
 const KittyAvatar = props => {
-  const outerStyle = { height: '160px', position: 'relative', width: '50%' };
-  const innerStyle = { height: '150px', position: 'absolute'};
+  const outerStyle = { height: '160px', display:'table-cell', verticalAlign: 'middle', textAlign: 'center'};
+  const innerStyle = { height: '160px'};
   const { dna } = props;
 
   if (!dna) return null;
